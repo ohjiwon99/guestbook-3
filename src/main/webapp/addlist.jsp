@@ -10,29 +10,37 @@
 
 </head>
 <body>
-	<form>
-	
-	<c:forEach items="${gList}" var="GuestbookVo">
-	
-	
+	<form action="/guestbook3/guest/insert">
 		<table border="1" width="540px">
 			<tr>
-				<td>이름</td>
-				<td>${GuestbookVo.name}</td>
-				
-				<td>비밀번호</td>
-				<td>${GuestbookVo.passWord}</td>
+				<td>이름</td><td><input type="text" name="name"></td>
+				<td>비밀번호</td><td><input type="password" name="pw"></td>
 			</tr>
 			<tr>
-				<td colspan="4"><textarea cols="72" rows="5">게시물</textarea></td>
+				<td colspan="4"><textarea cols="72" rows="5" name="content"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="4"><button type="">등록</button></td>
+				<td colspan="4"><button type="submit">등록</button></td>
 			</tr>
 		</table>
 	</form>
 	<br>
 
+	
+	<c:forEach items="${gtList}" var="GuestbookVo">
+	
+	<table border="1" width="540px">
+		<tr>
+			<td>${GuestbookVo.no}</td>
+			<td>${GuestbookVo.name}</td>
+			<td>${GuestbookVo.reg_date }</td>
+			<td><a href="/guestbook3/guest/dform?no=${GuestbookVo.no}">삭제</a></td>
+		</tr>
+		<tr>
+			<td colspan="4">${GuestbookVo.content }</td>
+		</tr>
+	</table>
+	<br>
 	</c:forEach>
 	
 </body>

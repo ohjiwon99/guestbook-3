@@ -9,11 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+<form action="/guestbook3/guest/delete">
+		<input type="text" name="no" value="${param.no }">
 		<table>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name=""></td>
+				<td><input type="password" name="pw"></td>
 				<td><button type="submit">삭제</button></td>
 			</tr>
 		</table>
@@ -23,3 +24,4 @@
 	<a href="">메인으로 돌아가기</a>
 </body>
 </html>
+

@@ -8,8 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.javaex.vo.GuestbookVo;
 
+
+
+@Repository
 public class GuestbookDao {
 
 	// 필드
@@ -17,9 +22,9 @@ public class GuestbookDao {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/guestbook_db";
-	private String id = "guestbook";
-	private String pw = "guestbook";
+	private String url = "jdbc:mysql://localhost:3306/guest_db";
+	private String id = "guest";
+	private String pw = "guest";
 
 	// 생성자
 	// 메소드-gs
@@ -81,7 +86,7 @@ public class GuestbookDao {
 			query += "        password, ";
 			query += "        content, ";
 			query += "        reg_date ";
-			query += " from   guestbook ";
+			query += " from   guest ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
@@ -126,7 +131,7 @@ public class GuestbookDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			// SQL문 준비
 			String query = "";
-			query += " insert into guestbook  ";
+			query += " insert into guest  ";
 			query += " values(null, ?,?,?,now()) ";
 
 			// 바인딩
@@ -154,7 +159,7 @@ public class GuestbookDao {
 	 * 삭제 Delete
 	 **************************/
 
-	public int GuestDelete(int no) {
+	public int GuestDelete(GuestbookVo guestbookVo) {
 		int count = -1;
 
 		this.getConnection();
@@ -163,12 +168,14 @@ public class GuestbookDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			// SQL문 준비
 			String query = "";
-			query += " delete from guestbook ";
-			query += " where and password=? ";
+			query += " delete from guest ";
+			query += " where no=?  ";
+			query += " and password=? ";
 
 			// 바인딩
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, guestbookVo.getNo());
+			pstmt.setString(2, guestbookVo.getPassword());
 
 			// 실행
 			count = pstmt.executeUpdate(); // select문 빼고 나머지는 executeUpdate()씀!
