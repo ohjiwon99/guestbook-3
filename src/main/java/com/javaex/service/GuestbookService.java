@@ -28,9 +28,9 @@ public class GuestbookService {
 		System.out.println("GuestbookService. exeSelect()");
 
 		// GuestbookDao guestbookDao = new GuestbookDao();
-		List<GuestbookVo> addlist = guestbookDao.GuestSelect();
+		List<GuestbookVo> guestList = guestbookDao.GuestSelect();
 
-		return addlist;
+		return guestList;
 	}
 
 	// 등록 exeWrite --> 전화번호부에 새로운 연락처를 등록하는 기능
